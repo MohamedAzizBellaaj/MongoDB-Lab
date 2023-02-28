@@ -1,0 +1,169 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+//! Select the database to use.
+use("Papeterie");
+
+// //! Insert a few documents into the "Inventaire" collection.
+// db.Inventaire.insertMany([
+//   { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+//   {
+//     item: "notebook",
+//     qty: 50,
+//     size: { h: 8.5, w: 11, uom: "in" },
+//     status: "A",
+//   },
+//   { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+//   {
+//     item: "planner",
+//     qty: 75,
+//     size: { h: 22.85, w: 30, uom: "cm" },
+//     status: "D",
+//   },
+//   {
+//     item: "postcard",
+//     qty: 45,
+//     size: { h: 10, w: 15.25, uom: "cm" },
+//     status: "A",
+//   },
+// ]);
+
+// //!1. Sélectionner tous les documents de la collection
+// db.Inventaire.find()
+
+// //! 2. Sélectionner le premier document inséré
+// db.Inventaire.findOne();
+
+// //! 3. Sélectionner dans la collection inventaire tous les documents dont le status est égal à"D"
+// db.Inventaire.find({ status: "D" });
+
+// //! 4. Sélectionner tous les documents de la collection Inventaire OU Status est égal à "A"ou"D"
+// db.Inventaire.find({ status: { $in: ["A", "D"] } });
+
+// //! 5. Sélectionner tous les documents de la collection OU les status sont "A" et quantité est inférieur à 25
+// db.Inventaire.find({ status: "A", qty: { $lt: 25 } });
+
+// //! 6. Sélectionner tous les documents de la collection OU les status sont "A" et quantité est inférieur ou égal à 25.
+// db.Inventaire.find({ status: "A", qty: { $lte: 25 } });
+
+// //! 7. Sélectionner tous les documents de la collection dont le status égal à "A" ou la quantité est inférieur à 30:
+// db.Inventaire.find({ $or: [{ status: "A" }, { qty: { $lt: 30 } }] });
+
+// //! 8. Sélectionner tous les documents de la collection oU le status est égal à "A" et soit quantité est inférieure à 30 ou item commence par le caractère p
+// db.Inventaire.find({
+//   $and: [{ status: "A" }, { $or: [{ qty: { $lt: 30 } }, { item: /^p/ }] }],
+// });
+
+// //! 9. Sélectionner tous les documents dont le champ size est égal au document :{h: 14, w: 21, uom: "cm" }
+// db.Inventaire.find({ size: { h: 14, w: 21, uom: "cm" } });
+
+// //! 10. Sélectionner tous les documents dont le champ uom imbriqué dans size est égal à "in"
+// db.Inventaire.find({ "size.uom": "in" });
+
+// //! 11. Sélectionner le champ h, incorporé dans le champ size, tel sa valeur inférieur à 15.
+// db.Inventaire.find({ "size.h": { $lt: 15 } });
+
+// //! 12. Sélectionner tous les documents dont le champ imbriqué h est inférieur à 15, le champ imbriqué uom est égal "in"et le champ status est égal à "D"
+// db.Inventaire.find({
+//   "size.h": { $lt: 15 },
+//   "size.uom": "in",
+//   status: "D",
+// });
+
+// //! Créer une nouvelle collection « Inventaire2 » Insérer les documents suivants dans la collection « Inventaire2 », en cliquant droit sur cette collection.
+// db.Inventaire2.insertMany([
+//   { item: "journal", qty: 25, tags: ["blank", "red"], dim_cm: [14, 21] },
+//   { item: "notebook", qty: 50, tags: ["red", "blank"], dim_cm: [14, 21] },
+//   {
+//     item: "paper",
+//     qty: 100,
+//     tags: ["red", "blank", "plain"],
+//     dim_cm: [14, 21],
+//   },
+//   { item: "planner", qty: 75, tags: ["blank", "red"], dim_cm: [22.85, 30] },
+//   { item: "postcard", qty: 45, tags: ["blue"], dim_cm: [10, 15.25] },
+// ]);
+
+// //! 13. Sélectionner tous les documents dont la valeur du champ tags est un tableau avec exactement deux éléments "red"et "blank", dans l'ordre spécifié.
+// db.Inventaire2.find({ tags: ["red", "blank"] });
+
+// //! 14. Sélectionner tous les documents dont la valeur du champ tags est un tableau contenant à la fois les éléments "red"et "blank", sans tenir compte de l'ordre ou des autres éléments du tableau (utilisez l'opérateur $all)
+// db.Inventaire2.find({ tags: { $all: ["red", "blank"] } });
+
+// //! 15. Sélectionner tous les documents où tags est un tableau contenant la chaîne "red" comme l'un de ses éléments:
+// db.Inventaire2.find({ tags: "red" });
+
+// //! 16. Sélectionner tous les documents dont le tableau dim_cm contient au moins un élément dont la valeur est supérieure à 25.
+// db.Inventaire2.find({ dim_cm: { $gt: 25 } });
+
+// //! 17. Sélectionner les documents où le tableau dim_cm contient des éléments qui, dans une combinaison, remplissent les conditions de requête, un élément peut satisfaire la condition supérieure 15 à et un autre élément peut satisfaire la condition inférieure à 20, ou un seul élément peut satisfaire à lafois:
+// db.Inventaire2.find({ dim_cm: { $gt: 15, $lt: 20 } });
+
+// //! 18. Sélectionner les documents dont le tableau dim_cm contient au moins un élément à la fois supérieurà ( $gt) 22 et inférieur à ( $lt) 30
+// db.Inventaire2.find({ dim_cm: { $elemMatch: { $gt: 22, $lt: 30 } } });
+
+// //! 19. Sélectionner tous les documents dont le deuxième élément du tableau dim_cm est supérieur à 25
+// db.Inventaire2.find({ "dim_cm.1": { $gt: 25 } });
+
+// //! 20. Sélectionne les documents dont le tableau tags contient 3 éléments.
+// db.Inventaire2.find({ tags: { $size: 3 } });
+
+// //! Créer une nouvelle collection « Inventaire3 » Insérer les documents suivants dans la collection « Inventaire3 », en cliquant droit sur cette collection.
+// db.Inventaire3.insertMany([
+//   {
+//     item: "journal",
+//     instock: [
+//       { warehouse: "A", qty: 5 },
+//       { warehouse: "C", qty: 15 },
+//     ],
+//   },
+//   { item: "notebook", instock: [{ warehouse: "C", qty: 5 }] },
+//   {
+//     item: "paper",
+//     instock: [
+//       { warehouse: "A", qty: 60 },
+//       { warehouse: "B", qty: 15 },
+//     ],
+//   },
+//   {
+//     item: "planner",
+//     instock: [
+//       { warehouse: "A", qty: 40 },
+//       { warehouse: "B", qty: 5 },
+//     ],
+//   },
+//   {
+//     item: "postcard",
+//     instock: [
+//       { warehouse: "B", qty: 15 },
+//       { warehouse: "C", qty: 35 },
+//     ],
+//   },
+// ]);
+
+// //! 21.sélectionne tous les documents pour lesquels un élément du tableau instock corresponde au document spécifié : warehouse est égale à "A" et la quantité est égal à 5.
+// db.Inventaire3.find({ instock: { warehouse: "A", qty: 5 } });
+
+// //! 22. Sélectionne tous les documents dont le tableau instock qui contient au moins un document incorporé contenant le champ qty dont la valeur est inférieure ou égale à 20
+// db.Inventaire3.find({ "instock.qty": { $lte: 20 } });
+
+// //! 23.Sélectionne tous les documents dans le tableau instock a pour premier élément un document contenant le champ qty dont la valeur est inférieure ou égale à 20
+// db.Inventaire3.find({ "instock.0.qty": { $lte: 20 } });
+
+// //! 24. Sélectionner les documents dont le tableau instock contient au moins un document incorporé contenant à la fois le champ qty égal à 5 et le champ warehouse égal à A
+// db.Inventaire3.find({ instock: { $elemMatch: { qty: 5, warehouse: "A" } } });
+
+// //! 25. Sélectionner les documents dont le tableau instock contient au moins un document incorporé contenant le champ qty supérieur à 10 et inférieur ou égal à 20
+// db.Inventaire3.find({
+//   instock: { $elemMatch: { qty: { $gt: 10, $lte: 20 } } },
+// });
+
+// //! 26. Sélectionner des documents dans lesquels tout document imbriqué dans le instock tableau a un champ qty supérieur à 10 et tout document (mais pas nécessairement le même document incorporé) dont le tableau a un qty champ inférieur ou égal à 20
+// db.Inventaire3.find({
+//   "instock.qty": { $gt: 10, $lte: 20 },
+// });
+
+// //! 27. Sélectionner les documents dont le tableau instock contient au moins un document incorporé contenant le champ qty égal à 5 et au moins un document incorporé (mais pas nécessairement le même document incorporé) contenant le champ warehouse égal à A
+// db.Inventaire3.find({ "instock.qty": 5, "instock.warehouse": "A" });
