@@ -1,0 +1,35 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+//! Select the database to use.
+use("Gestion_Fac");
+db.UE.drop();
+
+// //!1. Insert a few documents into the "UE" collection.
+db.UE.insertMany([
+  {
+    titre: "Java",
+    étudiants: [{ nom: "Jean Dujardin", note: 12 }],
+  },
+  {
+    titre: "Base de données",
+    étudiants: [
+      { nom: "Vanessa Paradis", note: 10 },
+      { nom: "Jean Dujardin", note: 17 },
+    ],
+  },
+  {
+    titre: "Réseaux",
+    étudiants: [{ nom: "Vanessa Paradis", note: 14 }],
+  },
+  {
+    titre: "Méthodologie",
+    étudiants: [{ nom: "Vanessa Paradis", note: 17 }],
+  },
+  {
+    titre: "Conduite Projet",
+    étudiants: [{ nom: "Vanessa Paradis", note: 11 }],
+  },
+]);

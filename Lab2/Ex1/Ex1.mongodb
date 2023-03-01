@@ -1,0 +1,217 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+//! Select the database to use.
+use("Voyageurs");
+db.Logement.drop();
+
+// //!1. Insert a few documents into the "Logement" collection.
+// db.Logement.insertMany([
+//   {
+//     code: "pi",
+//     nom: "U Pinzutu",
+//     capacié: 10,
+//     type: "Gîte",
+//     lieu: "Corse",
+//     activities: [
+//       {
+//         codeActivité: "Voile",
+//         description: "Pratique du dériveur et du catamaran",
+//       },
+//       {
+//         codeActivité: "Plongée",
+//         description: "Baptèmes et préparation des brevets",
+//       },
+//     ],
+//     séjours: [
+//       {
+//         voyageur: {
+//           nom: "Fogg",
+//           prénom: "Phileas",
+//           ville: "Ajaccio",
+//           région: "Corse",
+//         },
+//         début: 20,
+//         fin: 20,
+//       },
+//       {
+//         voyageur: {
+//           nom: "Bouvier",
+//           prénom: "Nicolas",
+//           ville: "Aurillac",
+//           région: "Auvergne",
+//         },
+//         début: 19,
+//         fin: 23,
+//       },
+//       {
+//         voyageur: {
+//           nom: "Fogg",
+//           prénom: "Phileas",
+//           ville: "Ajaccio",
+//           région: "Corse",
+//         },
+//         début: 10,
+//         fin: 12,
+//       },
+//     ],
+//   },
+//   {
+//     code: "ta",
+//     nom: "Tabriz",
+//     capacié: 34,
+//     type: "Hôtel",
+//     lieu: "Bretagne",
+//     séjours: [
+//       {
+//         voyageur: {
+//           nom: "Bouvier",
+//           prénom: "Nicolas",
+//           ville: "Aurillac",
+//           région: "Auvergne",
+//         },
+//         début: 21,
+//         fin: 22,
+//       },
+//     ],
+//   },
+//   {
+//     code: "ca",
+//     nom: "Causses",
+//     capacié: 45,
+//     type: "Auberge",
+//     lieu: "Cévennes",
+//     activities: [
+//       {
+//         codeActivité: "Randonnée",
+//         description: "Sorties d'une journée en groupe",
+//       },
+//     ],
+//     séjours: [
+//       {
+//         voyageur: {
+//           nom: "David-Néel",
+//           prénom: "Alexandra",
+//           ville: "Lhassa",
+//           région: "Tibet",
+//         },
+//         début: 13,
+//         fin: 18,
+//       },
+//       {
+//         voyageur: {
+//           nom: "Bouvier",
+//           prénom: "Nicolas",
+//           ville: "Aurillac",
+//           région: "Auvergne",
+//         },
+//         début: 21,
+//         fin: 22,
+//       },
+//     ],
+//   },
+//   {
+//     code: "ge",
+//     nom: "Génépi",
+//     capacié: 134,
+//     type: "Hôtel",
+//     lieu: "Alpes",
+//     activites: [
+//       {
+//         codeActivité: "Ski",
+//         description: "Sur piste uniquement",
+//       },
+//       {
+//         codeActivité: "Piscine",
+//         description: "Nage loisir non encadrée",
+//       },
+//     ],
+//     séjours: [
+//       {
+//         voyageur: {
+//           nom: "David-Néel",
+//           prénom: "Alexandra",
+//           ville: "Lhassa",
+//           région: "Tibet",
+//         },
+//         début: 2,
+//         fin: 3,
+//       },
+//       {
+//         voyageur: {
+//           nom: "Bouvier",
+//           prénom: "Nicolas",
+//           ville: "Aurillac",
+//           région: "Auvergne",
+//         },
+//         début: 22,
+//         fin: 24,
+//       },
+//     ],
+//   },
+// ]);
+// //!2. Insert a few documents into the "Voyageur" collection.
+// db.Voyageur.insertMany([
+//   { nom: "Fogg", prénom: "Phileas", ville: "Ajaccio", région: "Corse" },
+//   { nom: "Bouvier", prénom: "Nicolas", ville: "Aurillac", région: "Auvergne" },
+//   { nom: "David-Néel", prénom: "Alexandra", ville: "Lhassa", région: "Tibet" },
+//   {
+//     nom: "Stevenson",
+//     prénom: "Robert Louis",
+//     ville: "Vannes",
+//     région: "Bretagne",
+//   },
+// ]);
+// //!3. Insert a few documents into the "Logement" collection.
+// db.Logement.insertMany([
+//   {
+//     code: "pi",
+//     nom: "U Pinzutu",
+//     capacié: 10,
+//     type: "Gîte",
+//     lieu: "Corse",
+//     activities: [
+//       {
+//         codeActivité: "Voile",
+//         description: "Pratique du dériveur et du catamaran",
+//       },
+//       {
+//         codeActivité: "Plongée",
+//         description: "Baptèmes et préparation des brevets",
+//       },
+//     ],
+//   },
+//   { code: "ta", nom: "Tabriz", capacié: 34, type: "Hôtel", lieu: "Bretagne" },
+//   {
+//     code: "ca",
+//     nom: "Causses",
+//     capacié: 45,
+//     type: "Auberge",
+//     lieu: "Cévennes",
+//     activities: [
+//       {
+//         codeActivité: "Randonnée",
+//         description: "Sorties d'une journée en groupe",
+//       },
+//     ],
+//   },
+//   {
+//     code: "ge",
+//     nom: "Génépi",
+//     capacié: 134,
+//     type: "Hôtel",
+//     lieu: "Alpes",
+//     activites: [
+//       {
+//         codeActivité: "Ski",
+//         description: "Sur piste uniquement",
+//       },
+//       {
+//         codeActivité: "Piscine",
+//         description: "Nage loisir non encadrée",
+//       },
+//     ],
+//   },
+// ]);
